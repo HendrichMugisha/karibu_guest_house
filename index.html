@@ -21,10 +21,20 @@
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M8 0a5.53 5.53 0 0 0-5.5 5.5c0 3.7 5.5 10.5 5.5 10.5s5.5-6.8 5.5-10.5A5.53 5.53 0 0 0 8 0zm0 8.5A2.5 2.5 0 1 1 10.5 6 2.5 2.5 0 0 1 8 8.5z"/></svg>
                 Find Us in Rwengoma
             </a>
-            <a href="tel:+256772662001" class="utility-link">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
-                +256 772 662001
-            </a>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <a href="tel:+256772662001" class="utility-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328z"/></svg>
+                    +256 772 662001
+                </a>
+                <div class="currency-selector">
+                    <select class="currency-select" aria-label="Select Currency">
+                        <option value="UGX">UGX</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                    </select>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -63,7 +73,7 @@
         <div class="container">
             <div class="about-editorial">
                 <div class="about-image-wrapper fade-in delay-1">
-                    <div class="about-image parallax-bg" style="background-image: url('refs/images/4.jpeg');"></div>
+                    <div class="about-image parallax-bg" style="background-image: url('refs/images/new_images/1.jpeg');"></div>
                 </div>
                 <div class="about-text fade-in">
                     <span class="subtitle">Welcome to Karibu</span>
@@ -80,18 +90,31 @@
         <div class="container">
             <div class="text-center fade-in mb-4">
                 <span class="subtitle">Accommodations</span>
-                <h2 class="section-title">Our Cozy <br><span class="italic-serif">Rooms</span></h2>
+                <h2 class="section-title">Our <br><span class="italic-serif">Rooms</span></h2>
+                <div class="currency-selector inline-currency" style="margin-top: 1rem;">
+                    <span style="font-size: 0.85rem; color: var(--text-dim); margin-right: 0.5rem; text-transform: uppercase; letter-spacing: 1px;">Currency:</span>
+                    <select class="currency-select" aria-label="Select Currency" style="border-color: rgba(194,168,120,0.5); color: var(--text);">
+                        <option value="UGX">UGX</option>
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                    </select>
+                </div>
             </div>
             
             <div class="rooms-grid">
                 <!-- Single Room -->
                 <div class="room-card fade-in">
                     <div class="room-img-container">
-                        <div class="room-img" style="background-image: url('refs/images/3.jpeg');"></div>
+                        <div class="room-img" style="background-image: url('refs/images/new_images/2.jpeg');"></div>
                     </div>
                     <div class="room-info">
-                        <h3>Single Room</h3>
-                        <p>A comfortable, neat space for the independent traveler, equipped with everything you need for a restful stay.</p>
+                        <h3>Standard Room</h3>
+                        <div class="price-tag text-brass" style="font-size: 1.2rem; font-weight: 500; margin-bottom: 1rem;">
+                            <span class="dynamic-price" data-base-price="30000">30,000</span> <span class="dynamic-currency">UGX</span> 
+                            <span style="font-size: 0.85rem; color: var(--text); opacity: 0.7;">/ night (B&amp;B)</span>
+                        </div>
+                        <p>A comfortable, neat space equipped with everything you need for a restful stay.</p>
                         <ul class="room-features">
                             <li>En-Suite Bathroom</li>
                             <li>Complimentary High-Speed WiFi</li>
@@ -104,11 +127,15 @@
                 <!-- Double Room -->
                 <div class="room-card fade-in delay-1">
                     <div class="room-img-container">
-                        <div class="room-img" style="background-image: url('refs/images/5.jpeg');"></div>
+                        <div class="room-img" style="background-image: url('refs/images/new_images/11.jpeg');"></div>
                     </div>
                     <div class="room-info">
-                        <h3>Double Room</h3>
-                        <p>Spacious and welcoming, ideal for couples or friends looking for a comfortable and relaxing night's sleep.</p>
+                        <h3>Spacious Room</h3>
+                        <div class="price-tag text-brass" style="font-size: 1.2rem; font-weight: 500; margin-bottom: 1rem;">
+                            <span class="dynamic-price" data-base-price="40000">40,000</span> <span class="dynamic-currency">UGX</span> 
+                            <span style="font-size: 0.85rem; color: var(--text); opacity: 0.7;">/ night (B&amp;B)</span>
+                        </div>
+                        <p>A larger, welcoming room ideal for those looking for a bit more space and a comfortable night's sleep.</p>
                         <ul class="room-features">
                             <li>En-Suite Bathroom</li>
                             <li>Complimentary High-Speed WiFi</li>
@@ -154,24 +181,34 @@
                 <h2 class="section-title">Photo <br><span class="italic-serif">Gallery</span></h2>
             </div>
             
-            <!-- Asymmetrical/Masonry Gallery -->
-            <div class="gallery-masonry mt-2">
-                <div class="gallery-item span-2 fade-in"><img src="refs/images/2.jpeg" alt="Exterior" class="premium-filter"></div>
-                <div class="gallery-item fade-in delay-1"><img src="refs/images/3.jpeg" alt="Room" class="premium-filter"></div>
-                <div class="gallery-item fade-in delay-2"><img src="refs/images/4.jpeg" alt="Exterior" class="premium-filter"></div>
-                <div class="gallery-item span-row-2 fade-in"><img src="refs/images/5.jpeg" alt="Details" class="premium-filter"></div>
-                <div class="gallery-item fade-in delay-1"><img src="refs/images/6.jpeg" alt="Property" class="premium-filter"></div>
-                <div class="gallery-item fade-in delay-2"><img src="refs/images/7.jpeg" alt="Property" class="premium-filter"></div>
-                <div class="gallery-item span-2 fade-in"><img src="refs/images/8.jpeg" alt="Property" class="premium-filter"></div>
-                <div class="gallery-item fade-in delay-1"><img src="refs/images/9.jpeg" alt="Property" class="premium-filter"></div>
-                <div class="gallery-item fade-in delay-2"><img src="refs/images/232.jpeg" alt="Property" class="premium-filter"></div>
-                <div class="gallery-item fade-in"><img src="refs/images/WhatsApp Image 2026-07-13 at 20.20.15.jpeg" alt="Property" class="premium-filter"></div>
+            <!-- Auto-scrolling Gallery Carousel -->
+            <div class="gallery-carousel-wrapper mt-2 fade-in">
+                <div class="gallery-track">
+                    <img src="refs/images/new_images/13.jpeg" alt="Exterior" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/1.jpeg" alt="Patio" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/2.jpeg" alt="Room" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/3.jpeg" alt="Bed" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/6.jpeg" alt="Details" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/10.jpeg" alt="Bed" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/11.jpeg" alt="Bed" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/WhatsApp Image 2026-07-16 at 21.24.18.jpeg" alt="Room" class="premium-filter carousel-img">
+                    
+                    <!-- Duplicated for seamless loop -->
+                    <img src="refs/images/new_images/13.jpeg" alt="Exterior" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/1.jpeg" alt="Patio" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/2.jpeg" alt="Room" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/3.jpeg" alt="Bed" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/6.jpeg" alt="Details" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/10.jpeg" alt="Bed" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/11.jpeg" alt="Bed" class="premium-filter carousel-img">
+                    <img src="refs/images/new_images/WhatsApp Image 2026-07-16 at 21.24.18.jpeg" alt="Room" class="premium-filter carousel-img">
+                </div>
             </div>
             
             <div class="video-editorial fade-in mt-4">
                 <div class="video-overlay-frame"></div>
                 <video controls>
-                    <source src="refs/images/WhatsApp Video 2026-07-13 at 20.20.14.mp4" type="video/mp4">
+                    <source src="refs/images/new_images/vid2.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
             </div>

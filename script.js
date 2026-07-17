@@ -70,4 +70,59 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    // --- Currency Converter ---
+    const currencySelects = document.querySelectorAll('.currency-select');
+    const priceElements = document.querySelectorAll('.dynamic-price');
+    const currencyLabels = document.querySelectorAll('.dynamic-currency');
+
+    let exchangeRates = null;
+
+    async function fetchExchangeRates() {
+        try {
+            const response = await fetch('https://api.exchangerate-api.com/v4/latest/UGX');
+            const data = await response.json();
+            exchangeRates = data.rates;
+            
+            const savedCurrency = localStorage.getItem('preferredCurrency');
+            if (savedCurrency && exchangeRates[savedCurrency]) {
+                currencySelects.forEach(select => select.value = savedCurrency);
+                updatePrices(savedCurrency);
+            }
+        } catch (error) {
+            console.error("Failed to load exchange rates", error);
+        }
+    }
+
+    function updatePrices(currency) {
+        if (!exchangeRates) return;
+        const rate = exchangeRates[currency];
+        
+        priceElements.forEach(el => {
+            const basePrice = parseFloat(el.getAttribute('data-base-price'));
+            const convertedPrice = basePrice * rate;
+            
+            if (currency === 'UGX') {
+                el.textContent = convertedPrice.toLocaleString('en-US');
+            } else {
+                el.textContent = convertedPrice.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            }
+        });
+        
+        currencyLabels.forEach(el => {
+            el.textContent = currency;
+        });
+    }
+
+    if (currencySelects.length > 0) {
+        currencySelects.forEach(select => {
+            select.addEventListener('change', (e) => {
+                const selected = e.target.value;
+                localStorage.setItem('preferredCurrency', selected);
+                // Sync all selectors on the page
+                currencySelects.forEach(s => s.value = selected);
+                updatePrices(selected);
+            });
+        });
+        fetchExchangeRates();
+    }
 });

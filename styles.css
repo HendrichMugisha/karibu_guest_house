@@ -106,6 +106,29 @@ h1, h2, h3, h4, .logo {
     fill: currentColor;
 }
 
+.currency-selector select {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+    font-family: var(--font-body);
+    cursor: pointer;
+    outline: none;
+    transition: var(--transition);
+}
+
+.currency-selector select:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+.currency-selector select option {
+    background: var(--bg-charcoal);
+    color: #fff;
+}
+
 /* ===== Navigation ===== */
 nav {
     position: fixed;
@@ -202,7 +225,7 @@ nav.scrolled .hamburger .line {
 .btn-primary, .btn-secondary, .btn-outline {
     display: inline-block;
     padding: 1rem 2.5rem;
-    border-radius: 0; /* Boxy buttons for luxury feel */
+    border-radius: 6px; /* Slightly rounded for warmth/coziness */
     text-decoration: none;
     font-family: var(--font-body);
     text-transform: uppercase;
@@ -275,7 +298,7 @@ nav.scrolled .hamburger .line {
 /* ===== Hero Section ===== */
 .hero {
     height: 100vh;
-    background-image: url('refs/images/2.jpeg');
+    background-image: url('refs/images/new_images/13.jpeg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Parallax */
@@ -362,6 +385,7 @@ nav.scrolled .hamburger .line {
     position: relative;
     overflow: hidden;
     padding-top: 120%; /* Portrait aspect ratio */
+    border-radius: 8px;
 }
 
 .about-image {
@@ -378,6 +402,8 @@ nav.scrolled .hamburger .line {
     z-index: 2;
     position: relative;
     box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+    border: 1px solid rgba(194, 168, 120, 0.3); /* Light golden border */
+    border-radius: 8px;
 }
 
 .about-text p {
@@ -394,7 +420,9 @@ nav.scrolled .hamburger .line {
 
 .room-card {
     background: var(--bg-light);
-    border: 1px solid rgba(0,0,0,0.05);
+    border: 1px solid rgba(194, 168, 120, 0.3); /* Light golden border */
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 .room-img-container {
@@ -456,7 +484,11 @@ nav.scrolled .hamburger .line {
 }
 
 .amenity-item {
-    padding: 2rem 1rem;
+    padding: 2.5rem 1.5rem;
+    background: var(--bg-light);
+    border: 1px solid rgba(194, 168, 120, 0.3); /* Light golden border */
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
 }
 
 .amenity-line {
@@ -474,34 +506,37 @@ nav.scrolled .hamburger .line {
     margin-bottom: 1rem;
 }
 
-/* ===== Gallery Masonry ===== */
-.gallery-masonry {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-auto-rows: 250px;
-    gap: 1rem;
-}
-
-.gallery-item {
-    position: relative;
+/* ===== Gallery Carousel ===== */
+.gallery-carousel-wrapper {
     overflow: hidden;
-}
-
-.gallery-item img {
     width: 100%;
-    height: 100%;
+    position: relative;
+    white-space: nowrap;
+    padding: 1rem 0;
+}
+
+.gallery-track {
+    display: inline-flex;
+    gap: 1rem;
+    animation: scrollGallery 30s linear infinite;
+}
+
+.gallery-track:hover {
+    animation-play-state: paused;
+}
+
+.carousel-img {
+    height: 300px;
+    width: auto;
     object-fit: cover;
-    display: block;
-    transition: transform 1s ease;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 
-.gallery-item:hover img {
-    transform: scale(1.05);
+@keyframes scrollGallery {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 0.5rem)); }
 }
-
-/* Span classes for masonry effect */
-.span-2 { grid-column: span 2; }
-.span-row-2 { grid-row: span 2; }
 
 /* Video Editorial */
 .video-editorial {
@@ -693,14 +728,8 @@ footer p {
     
     .rooms-grid { grid-template-columns: 1fr; }
     
-    /* Revert Masonry to simple grid on mobile */
-    .gallery-masonry {
-        grid-template-columns: 1fr 1fr;
-        grid-auto-rows: 150px;
-    }
-    .span-2, .span-row-2 {
-        grid-column: span 1;
-        grid-row: span 1;
+    .carousel-img {
+        height: 200px;
     }
     
     .attractions-editorial { flex-direction: column; gap: 0.5rem; }
