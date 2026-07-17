@@ -773,6 +773,16 @@ footer p {
         top: 0;
     }
 
+    .nav-links li {
+        margin: 1.5rem 0;
+    }
+    
+    /* Ensure links stay white on mobile regardless of scroll state */
+    nav.scrolled .nav-links a,
+    .nav-links a {
+        color: #fff !important;
+    }
+
     .nav-links {
         position: fixed;
         top: 0;

@@ -176,6 +176,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 window.open(`https://wa.me/256772662001?text=${encodeURIComponent(msg)}`, '_blank');
             });
         }
+
+        // Set minimum date for check-in to today
+        const checkInInput = document.getElementById('check-in');
+        if (checkInInput) {
+            const today = new Date().toISOString().split('T')[0];
+            checkInInput.setAttribute('min', today);
+        }
     }
 });
 
