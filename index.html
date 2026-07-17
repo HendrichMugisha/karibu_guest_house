@@ -15,6 +15,11 @@
 </head>
 <body>
 
+    <!-- Preloader -->
+    <div id="preloader" style="position: fixed; top:0; left:0; width: 100vw; height: 100vh; background: var(--bg-charcoal); z-index: 999999; display: flex; align-items: center; justify-content: center; transition: transform 1s cubic-bezier(0.77, 0, 0.175, 1);">
+        <h1 style="color: var(--accent); font-family: var(--font-heading); font-size: 3rem; letter-spacing: 2px; animation: pulse 2s infinite;">Karibu.</h1>
+    </div>
+
     <div class="top-utility-bar">
         <div class="container utility-container">
             <a href="https://www.google.com/maps/dir//Karibu+Guest+House+Fort+Portal,+rwengoma,+Fort+Portal,+Uganda/@0.6527215,30.2749171,14z/data=!4m8!4m7!1m0!1m5!1m1!1s0x1763db004e2cbc5b:0x689e9c82691048fd!2m2!1d30.2595146!2d0.66084?entry=ttu" target="_blank" class="utility-link">
@@ -60,10 +65,15 @@
 
     <header class="hero" id="home">
         <div class="hero-overlay"></div>
-        <div class="hero-content">
-            <h1 class="reveal">A Warm Welcome <br><span class="italic-serif">to Fort Portal</span></h1>
-            <p class="reveal delay-1">Experience authentic Ugandan hospitality in our comfortable, cozy 10-room guest house.</p>
-            <div class="hero-buttons reveal delay-2">
+            <div class="hero-content">
+                <h1 class="hero-title" style="margin-bottom: 1rem; line-height: 1.2; font-size: 4rem;">
+                    <span class="cinematic-reveal"><span class="delay-c1">A Warm Welcome</span></span><br>
+                    <span class="cinematic-reveal"><span class="delay-c2 italic-serif">to Fort Portal</span></span>
+                </h1>
+                <p class="hero-description cinematic-reveal" style="margin-bottom: 2rem;">
+                    <span class="delay-c3">Experience authentic Ugandan hospitality in our comfortable, cozy 10-room guest house.</span>
+                </p>
+                <div class="hero-buttons fade-in" style="animation-delay: 2s;">
                 <a href="#rooms" class="btn-primary">View Our Rooms</a>
             </div>
         </div>
@@ -266,11 +276,29 @@
         </div>
     </footer>
 
-    <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/256772662001?text=Hello,%20I%20would%20like%20to%20inquire%20about%20booking%20a%20room%20at%20Karibu%20Guest%20House." target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-whatsapp" viewBox="0 0 16 16">
-          <path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.005-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232"/>
-        </svg>
+      <!-- Digital Concierge Drawer -->
+    <div id="concierge-drawer" class="concierge-drawer">
+        <div class="drawer-header">
+            <h3>Plan Your Stay</h3>
+            <button id="close-drawer" class="close-btn">&times;</button>
+        </div>
+        <div class="drawer-body">
+            <p style="margin-bottom: 2rem; opacity: 0.8;">Tell us a bit about your visit, and our concierge will arrange everything for you.</p>
+            <input type="text" id="guest-name" placeholder="Your Name" class="drawer-input">
+            <input type="date" id="check-in" class="drawer-input" placeholder="Check-in Date">
+            <select id="room-pref" class="drawer-input">
+                <option value="">Select a Room</option>
+                <option value="Standard Room">Standard Room (30k UGX)</option>
+                <option value="Spacious Room">Spacious Room (40k UGX)</option>
+            </select>
+            <button id="send-whatsapp" class="btn-primary" style="width: 100%; margin-top: 1rem;">Connect with Concierge</button>
+        </div>
+    </div>
+    <div id="drawer-overlay" class="drawer-overlay"></div>
+
+    <!-- Floating Concierge Button -->
+    <a href="#" class="whatsapp-float open-drawer" aria-label="Plan Stay">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/></svg>
     </a>
 
     <script src="script.js"></script>

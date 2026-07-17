@@ -125,4 +125,67 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         fetchExchangeRates();
     }
+    
+    // --- Custom Cursor ---
+    // Only on desktop
+    if (window.innerWidth > 768) {
+        const cursor = document.createElement('div');
+        cursor.classList.add('custom-cursor');
+        document.body.appendChild(cursor);
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, select, .room-card, .drawer-input').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+        });
+    }
+    
+    // --- Digital Concierge Drawer ---
+    const drawer = document.getElementById('concierge-drawer');
+    const overlay = document.getElementById('drawer-overlay');
+    const closeBtn = document.getElementById('close-drawer');
+    const openBtns = document.querySelectorAll('.open-drawer');
+
+    if(drawer && overlay) {
+        const toggleDrawer = () => {
+            drawer.classList.toggle('open');
+            overlay.classList.toggle('open');
+        };
+
+        openBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                toggleDrawer();
+            });
+        });
+
+        if(closeBtn) closeBtn.addEventListener('click', toggleDrawer);
+        overlay.addEventListener('click', toggleDrawer);
+
+        const sendBtn = document.getElementById('send-whatsapp');
+        if(sendBtn) {
+            sendBtn.addEventListener('click', () => {
+                const name = document.getElementById('guest-name').value || 'Guest';
+                const date = document.getElementById('check-in').value || 'an upcoming date';
+                const room = document.getElementById('room-pref').value || 'a room';
+                const msg = `Hello Karibu Concierge! I am ${name} and I would like to book ${room} starting ${date}. Is there availability?`;
+                window.open(`https://wa.me/256772662001?text=${encodeURIComponent(msg)}`, '_blank');
+            });
+        }
+    }
+});
+
+// --- Preloader ---
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            preloader.style.transform = 'translateY(-100%)';
+            setTimeout(() => preloader.remove(), 1000);
+        }
+    }, 1200);
 });

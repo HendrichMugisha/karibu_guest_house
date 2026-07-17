@@ -27,12 +27,70 @@ html {
 
 body {
     font-family: var(--font-body);
-    background-color: var(--bg);
+    line-height: 1.6;
     color: var(--text);
-    line-height: 1.7;
+    background-color: var(--bg-light);
     overflow-x: hidden;
-    font-weight: 300;
 }
+
+/* Texture: The Canvas Background */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.3;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ===== Custom Cursor & Preloader ===== */
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; text-shadow: 0 0 20px rgba(194, 168, 120, 0.5); }
+    100% { opacity: 0.5; }
+}
+
+.custom-cursor {
+    width: 15px; height: 15px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 999999;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s cubic-bezier(0.77, 0, 0.175, 1), height 0.3s cubic-bezier(0.77, 0, 0.175, 1), background-color 0.3s;
+}
+
+.custom-cursor.hover {
+    width: 45px; height: 45px;
+    background-color: rgba(194, 168, 120, 0.1);
+    border: 1px solid var(--accent);
+}
+
+/* ===== Cinematic Reveal Animations ===== */
+.cinematic-reveal {
+    overflow: hidden; 
+    display: inline-block;
+    vertical-align: bottom;
+}
+
+.cinematic-reveal > span {
+    display: inline-block;
+    transform: translateY(100%);
+    opacity: 0;
+    animation: cinematicSlideUp 1.2s cubic-bezier(0.77, 0, 0.175, 1) forwards;
+}
+
+@keyframes cinematicSlideUp {
+    0% { transform: translateY(100%); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+.delay-c1 { animation-delay: 1.2s !important; }
+.delay-c2 { animation-delay: 1.4s !important; }
+.delay-c3 { animation-delay: 1.6s !important; }
+.delay-c4 { animation-delay: 1.8s !important; }
 
 /* ===== Typography (Editorial) ===== */
 h1, h2, h3, h4, .logo {
@@ -384,26 +442,39 @@ nav.scrolled .hamburger .line {
 .about-image-wrapper {
     position: relative;
     overflow: hidden;
-    padding-top: 120%; /* Portrait aspect ratio */
-    border-radius: 8px;
+    padding-top: 140%; /* Very tall portrait aspect ratio */
+    border-radius: 200px 200px 0 0; /* Elegant Archway shape */
+    width: 85%; /* Don't span full width to create asymmetry */
 }
 
 .about-image {
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
+    top: 0; left: 0; width: 100%; height: 100%;
     background-size: cover;
     background-position: center;
 }
 
+/* Typography: Drop Cap & Layout: Extreme Asymmetry */
 .about-text {
     background: var(--bg-light);
-    padding: 4rem;
-    margin-left: -5rem; /* Negative margin for overlap */
+    padding: 5rem 4rem;
+    margin-left: -20%; /* Extreme overlap */
+    margin-top: 15%; /* Push down for staggered look */
     z-index: 2;
     position: relative;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-    border: 1px solid rgba(194, 168, 120, 0.3); /* Light golden border */
-    border-radius: 8px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.08);
+    border: 1px solid rgba(194, 168, 120, 0.4);
+    border-radius: 0; /* Contrast sharp text box against arched images */
+}
+
+.about-text p:first-of-type::first-letter {
+    font-family: var(--font-heading);
+    font-size: 4.5rem;
+    float: left;
+    margin-right: 0.8rem;
+    line-height: 0.8;
+    color: var(--accent);
+    margin-top: 0.4rem;
 }
 
 .about-text p {
@@ -428,6 +499,8 @@ nav.scrolled .hamburger .line {
 .room-img-container {
     overflow: hidden;
     height: 400px;
+    border-radius: 200px 200px 0 0; /* Archway shape for rooms */
+    border-bottom: 1px solid rgba(194, 168, 120, 0.3);
 }
 
 .room-img {
@@ -737,4 +810,42 @@ footer p {
     
     .whatsapp-float { bottom: 1.5rem; right: 1.5rem; width: 50px; height: 50px; }
     .whatsapp-float svg { width: 25px; height: 25px; }
+}
+
+/* ===== Digital Concierge Drawer ===== */
+.concierge-drawer {
+    position: fixed; top: 0; right: -450px; width: 400px; height: 100vh;
+    background: var(--bg-light); z-index: 100000;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+    transition: right 0.5s cubic-bezier(0.77, 0, 0.175, 1);
+    padding: 3rem 2rem; display: flex; flex-direction: column; gap: 2rem;
+}
+
+.concierge-drawer.open { right: 0; }
+
+.drawer-overlay {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    background: rgba(0,0,0,0.5); z-index: 99999;
+    opacity: 0; pointer-events: none; transition: opacity 0.5s;
+    backdrop-filter: blur(5px);
+}
+
+.drawer-overlay.open { opacity: 1; pointer-events: all; }
+
+.drawer-header { display: flex; justify-content: space-between; align-items: center; }
+
+.close-btn { background: none; border: none; font-size: 2.5rem; cursor: pointer; color: var(--text); padding: 0; line-height: 1; }
+.close-btn:hover { color: var(--accent); }
+
+.drawer-input { 
+    width: 100%; padding: 1rem; 
+    border: 1px solid rgba(194,168,120,0.5); 
+    border-radius: 6px; background: transparent; 
+    color: var(--text); font-family: var(--font-body); 
+    margin-bottom: 1rem; outline: none;
+}
+.drawer-input:focus { border-color: var(--accent); }
+
+@media (max-width: 450px) {
+    .concierge-drawer { width: 100vw; right: -100vw; }
 }
